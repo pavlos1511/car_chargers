@@ -1,0 +1,402 @@
+[
+  {
+    "pointid": "101",
+    "providerName": "bestPowerGR",
+    "lon": "23.7275",
+    "lat": "37.9838",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "102",
+    "providerName": "bestPowerGR",
+    "lon": "23.7345",
+    "lat": "37.9755",
+    "cap": 50,
+    "costPerKwh": 0.60
+  },
+  {
+    "pointid": "103",
+    "providerName": "bestPowerGR",
+    "lon": "23.7308",
+    "lat": "37.9862",
+    "cap": 22,
+    "costPerKwh": 0.48
+  },
+  {
+    "pointid": "104",
+    "providerName": "bestPowerGR",
+    "lon": "23.7361",
+    "lat": "37.9701",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "105",
+    "providerName": "bestPowerGR",
+    "lon": "23.7284",
+    "lat": "37.9915",
+    "cap": 50,
+    "costPerKwh": 0.65
+  },
+  {
+    "pointid": "106",
+    "providerName": "bestPowerGR",
+    "lon": "23.7359",
+    "lat": "37.9778",
+    "cap": 22,
+    "costPerKwh": 0.50
+  },
+  {
+    "pointid": "107",
+    "providerName": "bestPowerGR",
+    "lon": "23.7240",
+    "lat": "37.9685",
+    "cap": 43,
+    "costPerKwh": 0.55
+  },
+  {
+    "pointid": "108",
+    "providerName": "bestPowerGR",
+    "lon": "23.7412",
+    "lat": "37.9823",
+    "cap": 120,
+    "costPerKwh": 0.72
+  },
+  {
+    "pointid": "109",
+    "providerName": "bestPowerGR",
+    "lon": "23.7178",
+    "lat": "37.9764",
+    "cap": 22,
+    "costPerKwh": 0.47
+  },
+  {
+    "pointid": "110",
+    "providerName": "bestPowerGR",
+    "lon": "23.7470",
+    "lat": "37.9640",
+    "cap": 50,
+    "costPerKwh": 0.62
+  },
+  {
+    "pointid": "111",
+    "providerName": "bestPowerGR",
+    "lon": "23.7321",
+    "lat": "37.9870",
+    "cap": 22,
+    "costPerKwh": 0.49
+  },
+  {
+    "pointid": "112",
+    "providerName": "bestPowerGR",
+    "lon": "23.7295",
+    "lat": "37.9712",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "113",
+    "providerName": "bestPowerGR",
+    "lon": "23.8105",
+    "lat": "38.0255",
+    "cap": 150,
+    "costPerKwh": 0.75
+  },
+  {
+    "pointid": "114",
+    "providerName": "bestPowerGR",
+    "lon": "23.7523",
+    "lat": "37.9458",
+    "cap": 50,
+    "costPerKwh": 0.58
+  },
+  {
+    "pointid": "115",
+    "providerName": "bestPowerGR",
+    "lon": "23.7054",
+    "lat": "37.9621",
+    "cap": 22,
+    "costPerKwh": 0.50
+  },
+  {
+    "pointid": "116",
+    "providerName": "bestPowerGR",
+    "lon": "23.7389",
+    "lat": "37.9901",
+    "cap": 22,
+    "costPerKwh": 0.60
+  },
+  {
+    "pointid": "117",
+    "providerName": "bestPowerGR",
+    "lon": "23.7268",
+    "lat": "37.9790",
+    "cap": 43,
+    "costPerKwh": 0.48
+  },
+  {
+    "pointid": "118",
+    "providerName": "bestPowerGR",
+    "lon": "23.7330",
+    "lat": "37.9745",
+    "cap": 50,
+    "costPerKwh": 0.65
+  },
+  {
+    "pointid": "119",
+    "providerName": "bestPowerGR",
+    "lon": "23.7201",
+    "lat": "37.9856",
+    "cap": 22,
+    "costPerKwh": 0.47
+  },
+  {
+    "pointid": "120",
+    "providerName": "bestPowerGR",
+    "lon": "23.7456",
+    "lat": "37.9663",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "121",
+    "providerName": "bestPowerGR",
+    "lon": "23.7317",
+    "lat": "37.9829",
+    "cap": 50,
+    "costPerKwh": 0.68
+  },
+  {
+    "pointid": "122",
+    "providerName": "bestPowerGR",
+    "lon": "23.7398",
+    "lat": "37.9734",
+    "cap": 120,
+    "costPerKwh": 0.70
+  },
+  {
+    "pointid": "123",
+    "providerName": "bestPowerGR",
+    "lon": "23.7270",
+    "lat": "37.9805",
+    "cap": 22,
+    "costPerKwh": 0.52
+  },
+  {
+    "pointid": "124",
+    "providerName": "bestPowerGR",
+    "lon": "23.7352",
+    "lat": "37.9770",
+    "cap": 22,
+    "costPerKwh": 0.46
+  },
+  {
+    "pointid": "125",
+    "providerName": "bestPowerGR",
+    "lon": "23.7425",
+    "lat": "37.9698",
+    "cap": 50,
+    "costPerKwh": 0.62
+  },
+  {
+    "pointid": "126",
+    "providerName": "bestPowerGR",
+    "lon": "23.7189",
+    "lat": "37.9752",
+    "cap": 22,
+    "costPerKwh": 0.60
+  },
+  {
+    "pointid": "127",
+    "providerName": "bestPowerGR",
+    "lon": "23.7300",
+    "lat": "37.9887",
+    "cap": 22,
+    "costPerKwh": 0.49
+  },
+  {
+    "pointid": "128",
+    "providerName": "bestPowerGR",
+    "lon": "23.7481",
+    "lat": "37.9624",
+    "cap": 43,
+    "costPerKwh": 0.48
+  },
+  {
+    "pointid": "129",
+    "providerName": "bestPowerGR",
+    "lon": "23.7263",
+    "lat": "37.9831",
+    "cap": 50,
+    "costPerKwh": 0.65
+  },
+  {
+    "pointid": "130",
+    "providerName": "bestPowerGR",
+    "lon": "23.7338",
+    "lat": "37.9769",
+    "cap": 22,
+    "costPerKwh": 0.55
+  },
+  {
+    "pointid": "131",
+    "providerName": "bestPowerGR",
+    "lon": "23.7402",
+    "lat": "37.9709",
+    "cap": 150,
+    "costPerKwh": 0.78
+  },
+  {
+    "pointid": "132",
+    "providerName": "bestPowerGR",
+    "lon": "23.7291",
+    "lat": "37.9814",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "133",
+    "providerName": "bestPowerGR",
+    "lon": "23.7367",
+    "lat": "37.9748",
+    "cap": 50,
+    "costPerKwh": 0.63
+  },
+  {
+    "pointid": "134",
+    "providerName": "bestPowerGR",
+    "lon": "23.7225",
+    "lat": "37.9865",
+    "cap": 22,
+    "costPerKwh": 0.50
+  },
+  {
+    "pointid": "135",
+    "providerName": "bestPowerGR",
+    "lon": "23.7440",
+    "lat": "37.9675",
+    "cap": 22,
+    "costPerKwh": 0.47
+  },
+  {
+    "pointid": "136",
+    "providerName": "bestPowerGR",
+    "lon": "23.7315",
+    "lat": "37.9798",
+    "cap": 50,
+    "costPerKwh": 0.60
+  },
+  {
+    "pointid": "137",
+    "providerName": "bestPowerGR",
+    "lon": "23.7382",
+    "lat": "37.9721",
+    "cap": 43,
+    "costPerKwh": 0.56
+  },
+  {
+    "pointid": "138",
+    "providerName": "bestPowerGR",
+    "lon": "23.7279",
+    "lat": "37.9847",
+    "cap": 22,
+    "costPerKwh": 0.48
+  },
+  {
+    "pointid": "139",
+    "providerName": "bestPowerGR",
+    "lon": "23.7350",
+    "lat": "37.9760",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "140",
+    "providerName": "bestPowerGR",
+    "lon": "23.7428",
+    "lat": "37.9689",
+    "cap": 120,
+    "costPerKwh": 0.70
+  },
+  {
+    "pointid": "141",
+    "providerName": "bestPowerGR",
+    "lon": "23.7208",
+    "lat": "37.9872",
+    "cap": 22,
+    "costPerKwh": 0.49
+  },
+  {
+    "pointid": "142",
+    "providerName": "bestPowerGR",
+    "lon": "23.7495",
+    "lat": "37.9637",
+    "cap": 50,
+    "costPerKwh": 0.52
+  },
+  {
+    "pointid": "143",
+    "providerName": "bestPowerGR",
+    "lon": "23.7287",
+    "lat": "37.9826",
+    "cap": 22,
+    "costPerKwh": 0.50
+  },
+  {
+    "pointid": "144",
+    "providerName": "bestPowerGR",
+    "lon": "23.7341",
+    "lat": "37.9759",
+    "cap": 22,
+    "costPerKwh": 0.55
+  },
+  {
+    "pointid": "145",
+    "providerName": "bestPowerGR",
+    "lon": "23.7395",
+    "lat": "37.9718",
+    "cap": 50,
+    "costPerKwh": 0.65
+  },
+  {
+    "pointid": "146",
+    "providerName": "bestPowerGR",
+    "lon": "23.7269",
+    "lat": "37.9803",
+    "cap": 43,
+    "costPerKwh": 0.47
+  },
+  {
+    "pointid": "147",
+    "providerName": "bestPowerGR",
+    "lon": "23.7432",
+    "lat": "37.9665",
+    "cap": 22,
+    "costPerKwh": 0.62
+  },
+  {
+    "pointid": "148",
+    "providerName": "bestPowerGR",
+    "lon": "23.7310",
+    "lat": "37.9785",
+    "cap": 50,
+    "costPerKwh": 0.60
+  },
+  {
+    "pointid": "149",
+    "providerName": "bestPowerGR",
+    "lon": "23.7376",
+    "lat": "37.9732",
+    "cap": 22,
+    "costPerKwh": 0.45
+  },
+  {
+    "pointid": "150",
+    "providerName": "bestPowerGR",
+    "lon": "23.7298",
+    "lat": "37.9850",
+    "cap": 120,
+    "costPerKwh": 0.72
+  }
+]

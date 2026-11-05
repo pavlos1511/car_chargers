@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+import argparse
+import requests
+import sys
+
+BASE_URL = "http://localhost:9876/api"
+DEFAULT_FORMAT = "csv"
+
+# --------------------------------------------------
+def print_response(response, fmt):
+    if response.status_code != 200:
+        print(f"Error: {response.status_code}")
+        return
+
+    if fmt == "json":
+        print(response.json())
+    else:
+        print(response.text)
+
+# --------------------------------------------------
+def healthcheck(args):
+    r = requests.get(f"{BASE_URL}/admin/healthcheck")
+    print(r.text)
+
+def resetpoints(args):
+    r = requests.post(f"{BASE_URL}/admin/resetpoints")
+    print(r.text)
+
+def addpoints(args):
+    with open(args.source, "rb") as f:
+        r = requests.post(f"{BASE_URL}/admin/addpoints", files={"file": f})
+    print(r.text)
+
+# --------------------------------------------------
+def points(args):
+    params = {}
+    if args.status:
+        params["status"] = args.status
+    params["format"] = args.format
+    r = requests.get(f"{BASE_URL}/points", params=params)
+    print_response(r, args.format)
+
+def point(args):
+    r = requests.get(f"{BASE_URL}/point/{args.id}")
+    print(r.json())
+
+def reserve(args):
+    minutes = args.minutes if args.minutes else 30
+    r = requests.post(f"{BASE_URL}/reserve/{args.id}/{minutes}")
+    print(r.json())
+
+def updpoint(args):
+    payload = {}
+    if args.status:
+        payload["status"] = args.status
+    if args.price is not None:
+        payload["kwhprice"] = args.price
+
+    if not payload:
+        print("At least one of --status or --price is required")
+        return
+
+    r = requests.post(f"{BASE_URL}/updpoint/{args.id}", json=payload)
+    print(r.json())
+
+def newsession(args):
+    payload = {
+        "id": args.id,
+        "starttime": args.starttime,
+        "endtime": args.endtime,
+        "startsoc": args.startsoc,
+        "endsoc": args.endsoc,
+        "totalkwh": args.totalkwh,
+        "kwhprice": args.kwhprice,
+        "Amount": args.amount
+
+    }
+    r = requests.post(f"{BASE_URL}/newsession", json=payload)
+    print("OK")
+
+def sessions(args):
+    r = requests.get(
+        f"{BASE_URL}/sessions/{args.id}/{args.from_date}/{args.to_date}",
+        params={"format": args.format}
+    )
+    print_response(r, args.format)
+
+def pointstatus(args):
+    r = requests.get(
+        f"{BASE_URL}/pointstatus/{args.id}/{args.from_date}/{args.to_date}",
+        params={"format": args.format}
+    )
+    print_response(r, args.format)
+
+# --------------------------------------------------
+def main():
+    parser = argparse.ArgumentParser()
+    sub = parser.add_subparsers(dest="scope")
+
+    sub.add_parser("healthcheck").set_defaults(func=healthcheck)
+    sub.add_parser("resetpoints").set_defaults(func=resetpoints)
+
+    ap = sub.add_parser("addpoints")
+    ap.add_argument("--source", required=True)
+    ap.set_defaults(func=addpoints)
+
+    pp = sub.add_parser("points")
+    pp.add_argument("--status")
+    pp.add_argument("--format", choices=["csv", "json"], default=DEFAULT_FORMAT)
+    pp.set_defaults(func=points)
+
+    p = sub.add_parser("point")
+    p.add_argument("--id", required=True)
+    p.set_defaults(func=point)
+
+    r = sub.add_parser("reserve")
+    r.add_argument("--id", required=True)
+    r.add_argument("--minutes", type=int)
+    r.set_defaults(func=reserve)
+
+    up = sub.add_parser("updpoint")
+    up.add_argument("--id", required=True)
+    up.add_argument("--status")
+    up.add_argument("--price", type=float)
+    up.set_defaults(func=updpoint)
+
+    ns = sub.add_parser("newsession")
+    ns.add_argument("--id", required=True)
+    ns.add_argument("--starttime", required=True)
+    ns.add_argument("--endtime", required=True)
+    ns.add_argument("--startsoc", type=int)
+    ns.add_argument("--endsoc", type=int)
+    ns.add_argument("--totalkwh", type=float)
+    ns.add_argument("--kwhprice", type=float)
+    ns.add_argument("--amount", type=float)
+    ns.set_defaults(func=newsession)
+
+    s = sub.add_parser("sessions")
+    s.add_argument("--id", required=True)
+    s.add_argument("--from", dest="from_date", required=True)
+    s.add_argument("--to", dest="to_date", required=True)
+    s.add_argument("--format", choices=["csv", "json"], default=DEFAULT_FORMAT)
+    s.set_defaults(func=sessions)
+
+    ps = sub.add_parser("pointstatus")
+    ps.add_argument("--id", required=True)
+    ps.add_argument("--from", dest="from_date", required=True)
+    ps.add_argument("--to", dest="to_date", required=True)
+    ps.add_argument("--format", choices=["csv", "json"], default=DEFAULT_FORMAT)
+    ps.set_defaults(func=pointstatus)
+
+    args = parser.parse_args()
+    if not args.scope:
+        parser.print_help()
+        sys.exit(1)
+
+    args.func(args)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,448 @@
+{
+  "info": {
+    "_postman_id": "25d2ba2d-7595-465a-9ee4-0fe2743efdf2",
+    "name": "EV Charging Demo 2026",
+    "description": "Σενάριο επίδειξης βάσει οδηγιών σελ. 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52169922",
+    "_collection_link": "https://go.postman.co/collection/52169922-25d2ba2d-7595-465a-9ee4-0fe2743efdf2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Healthcheck",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/healthcheck",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "healthcheck"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Reset Points",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/resetpoints",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "resetpoints"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Add Points (Upload CSV)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/C:/Users/thage/Desktop/current_ev/softeng25-15/cli-client/tests/sample_points.csv"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/addpoints",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "addpoints"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Status: Available",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/points?status=available",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "points"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "available"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Status: Charging",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/points?status=charging",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "points"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "charging"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Status: Offline",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/points?status=offline",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "points"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "offline"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Point Info (X)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/point/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "point",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Reserve Point (X)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reserve/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "reserve",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Status: Reserved",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/points?status=reserved",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "points"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "reserved"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11. Point Info (X)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/point/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "point",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "12. Release Point (Update Status)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\": \"available\"}"
+        },
+        "url": {
+          "raw": "{{base_url}}/updpoint/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "updpoint",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "13. Point Info (X)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/point/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "point",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "14. Reserve Point (X) again",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reserve/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "reserve",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "15. Status: Reserved",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/points?status=reserved",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "points"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "reserved"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "16. New Session 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"{{point_id}}\",\n  \"starttime\": \"2026-02-01 10:00\",\n  \"endtime\": \"2026-02-01 11:00\",\n  \"startsoc\": 10,\n  \"endsoc\": 30,\n  \"totalkwh\": 15,\n  \"kwhprice\": 0.5,\n  \"Amount\": 7.5\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/newsession",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "newsession"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "17. Point Status History (Session 1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pointstatus/{{point_id}}/20260201/20260201",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "pointstatus",
+            "{{point_id}}",
+            "20260201",
+            "20260201"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "18. Point Info (X)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/point/{{point_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "point",
+            "{{point_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "19. New Session 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"{{point_id}}\",\n  \"starttime\": \"2026-02-02 12:00\",\n  \"endtime\": \"2026-02-02 14:00\",\n  \"startsoc\": 50,\n  \"endsoc\": 80,\n  \"totalkwh\": 20,\n  \"kwhprice\": 0.6,\n  \"Amount\": 12.0\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/newsession",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "newsession"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "20. Sessions History (Combined)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/sessions/{{point_id}}/20260201/20260202",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "sessions",
+            "{{point_id}}",
+            "20260201",
+            "20260202"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "21. Point Status History (Combined)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pointstatus/{{point_id}}/20260201/20260202",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "pointstatus",
+            "{{point_id}}",
+            "20260201",
+            "20260202"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:9876"
+    },
+    {
+      "key": "point_id",
+      "value": "101"
+    }
+  ]
+}

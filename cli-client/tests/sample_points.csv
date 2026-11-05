@@ -1,0 +1,4 @@
+pointid,lat,lon,cap,kwhprice,status
+99,37.97,23.72,22,0.50,available
+100,37.98,23.73,11,0.45,available
+98,37.96,23.71,50,0.60,available

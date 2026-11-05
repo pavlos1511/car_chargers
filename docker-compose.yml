@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # ----------------------------------------------------------------
+  # 1. Database (PostgreSQL)
+  # ----------------------------------------------------------------
+  db:
+    image: postgres:15
+    container_name: ev_db
+    environment:
+      POSTGRES_USER: admin        # Username
+      POSTGRES_PASSWORD: secret   # Password
+      POSTGRES_DB: ev_charging_db # DB Name
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # FIX: This tells Docker to check if Postgres is actually ready to accept connections
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d ev_charging_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------------
+  # 2. Backend (FastAPI)
+  # ----------------------------------------------------------------
+  backend:
+    build: ./backend
+    container_name: ev_backend
+    ports:
+      - "9876:9876"
+    # FIX: This tells the backend to wait until the 'db' reports itself as "healthy"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=postgresql://admin:secret@db:5432/ev_charging_db
+      - TZ=Europe/Athens 
+      - MAX_RESERVATION_MINUTES=60
+
+  # ----------------------------------------------------------------
+  # 3. Frontend (Flutter Web)
+  # ----------------------------------------------------------------
+  frontend:
+    build: ./frontend_flutter
+    container_name: ev_frontend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./frontend_flutter:/app
+    command: bash -c "flutter pub get && flutter run -d web-server --web-port 5000 --web-hostname 0.0.0.0"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

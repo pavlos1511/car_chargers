@@ -1,0 +1,704 @@
+---
+openapi: 3.1.0
+info:
+  title: FastAPI
+  version: 0.1.0
+paths:
+  "/api/login":
+    post:
+      summary: Login
+      description: Simple login endpoint - username and password
+      operationId: login_api_login_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UserLogin"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UserShow"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/register":
+    post:
+      summary: Register
+      description: Register a new user
+      operationId: register_api_register_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UserLogin"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UserShow"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/admin/healthcheck":
+    get:
+      summary: Health Check
+      operationId: health_check_api_admin_healthcheck_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HealthCheck"
+  "/api/admin/resetpoints":
+    post:
+      summary: Reset Points
+      operationId: reset_points_api_admin_resetpoints_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/admin/addpoints":
+    post:
+      summary: Add Points
+      operationId: add_points_api_admin_addpoints_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              "$ref": "#/components/schemas/Body_add_points_api_admin_addpoints_post"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/points":
+    get:
+      summary: Read Points
+      operationId: read_points_api_points_get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Status
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          default: json
+          title: Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/PointList"
+                title: Response Read Points Api Points Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/point/{id}":
+    get:
+      summary: Read Point Detail
+      operationId: read_point_detail_api_point__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PointDetail"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/reserve/{id}/{minutes}":
+    post:
+      summary: Reserve Point With Time
+      operationId: reserve_point_with_time_api_reserve__id___minutes__post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      - name: minutes
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Minutes
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ReservationResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/reserve/{id}":
+    post:
+      summary: Reserve Point Default
+      operationId: reserve_point_default_api_reserve__id__post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ReservationResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/updpoint/{id}":
+    post:
+      summary: Update Point
+      operationId: update_point_api_updpoint__id__post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/PointUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PointUpdateResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/newsession":
+    post:
+      summary: Create Session Endpoint
+      operationId: create_session_endpoint_api_newsession_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/SessionCreate"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/sessions/{id}/{from_date}/{to_date}":
+    get:
+      summary: Get Sessions History
+      operationId: get_sessions_history_api_sessions__id___from_date___to_date__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      - name: from_date
+        in: path
+        required: true
+        schema:
+          type: string
+          title: From Date
+      - name: to_date
+        in: path
+        required: true
+        schema:
+          type: string
+          title: To Date
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          default: json
+          title: Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/SessionShow"
+                title: Response Get Sessions History Api Sessions  Id   From Date   To
+                  Date  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/pointstatus/{id}/{from_date}/{to_date}":
+    get:
+      summary: Get Point Status History
+      operationId: get_point_status_history_api_pointstatus__id___from_date___to_date__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Id
+      - name: from_date
+        in: path
+        required: true
+        schema:
+          type: string
+          title: From Date
+      - name: to_date
+        in: path
+        required: true
+        schema:
+          type: string
+          title: To Date
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          default: json
+          title: Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/PointEventShow"
+                title: Response Get Point Status History Api Pointstatus  Id   From
+                  Date   To Date  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/points/bbox":
+    get:
+      summary: Get Points Bbox
+      operationId: get_points_bbox_api_points_bbox_get
+      parameters:
+      - name: ne_lat
+        in: query
+        required: true
+        schema:
+          type: number
+          title: Ne Lat
+      - name: ne_lon
+        in: query
+        required: true
+        schema:
+          type: number
+          title: Ne Lon
+      - name: sw_lat
+        in: query
+        required: true
+        schema:
+          type: number
+          title: Sw Lat
+      - name: sw_lon
+        in: query
+        required: true
+        schema:
+          type: number
+          title: Sw Lon
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/PointDetail"
+                title: Response Get Points Bbox Api Points Bbox Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+components:
+  schemas:
+    Body_add_points_api_admin_addpoints_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_add_points_api_admin_addpoints_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            "$ref": "#/components/schemas/ValidationError"
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HealthCheck:
+      properties:
+        status:
+          type: string
+          title: Status
+        dbconnection:
+          type: string
+          title: Dbconnection
+        n_charge_points:
+          type: integer
+          title: N Charge Points
+        n_charge_points_online:
+          type: integer
+          title: N Charge Points Online
+        n_charge_points_offline:
+          type: integer
+          title: N Charge Points Offline
+      type: object
+      required:
+      - status
+      - dbconnection
+      - n_charge_points
+      - n_charge_points_online
+      - n_charge_points_offline
+      title: HealthCheck
+    PointDetail:
+      properties:
+        pointid:
+          type: string
+          title: Pointid
+        lon:
+          type: string
+          title: Lon
+        lat:
+          type: string
+          title: Lat
+        status:
+          type: string
+          title: Status
+        cap:
+          type: integer
+          title: Cap
+        reservationendtime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Reservationendtime
+        kwhprice:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Kwhprice
+      type: object
+      required:
+      - pointid
+      - lon
+      - lat
+      - status
+      - cap
+      title: PointDetail
+    PointEventShow:
+      properties:
+        timeref:
+          type: string
+          format: date-time
+          title: Timeref
+        old_state:
+          type: string
+          title: Old State
+        new_state:
+          type: string
+          title: New State
+      type: object
+      required:
+      - timeref
+      - old_state
+      - new_state
+      title: PointEventShow
+    PointList:
+      properties:
+        providerName:
+          type: string
+          title: Providername
+          default: bestPowerGR
+        pointid:
+          type: string
+          title: Pointid
+        lon:
+          type: string
+          title: Lon
+        lat:
+          type: string
+          title: Lat
+        status:
+          type: string
+          title: Status
+        cap:
+          type: integer
+          title: Cap
+      type: object
+      required:
+      - pointid
+      - lon
+      - lat
+      - status
+      - cap
+      title: PointList
+    PointUpdate:
+      properties:
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+        kwhprice:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Kwhprice
+      type: object
+      title: PointUpdate
+    PointUpdateResponse:
+      properties:
+        pointid:
+          type: string
+          title: Pointid
+        status:
+          type: string
+          title: Status
+        kwhprice:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Kwhprice
+      type: object
+      required:
+      - pointid
+      - status
+      title: PointUpdateResponse
+    ReservationResponse:
+      properties:
+        pointid:
+          type: string
+          title: Pointid
+        status:
+          type: string
+          title: Status
+        reservationendtime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Reservationendtime
+      type: object
+      required:
+      - pointid
+      - status
+      title: ReservationResponse
+    SessionCreate:
+      properties:
+        id:
+          type: string
+          title: Id
+        starttime:
+          type: string
+          title: Starttime
+        endtime:
+          type: string
+          title: Endtime
+        startsoc:
+          type: integer
+          title: Startsoc
+        endsoc:
+          type: integer
+          title: Endsoc
+        totalkwh:
+          type: number
+          title: Totalkwh
+        kwhprice:
+          type: number
+          title: Kwhprice
+        Amount:
+          type: number
+          title: Amount
+      type: object
+      required:
+      - id
+      - starttime
+      - endtime
+      - startsoc
+      - endsoc
+      - totalkwh
+      - kwhprice
+      - Amount
+      title: SessionCreate
+    SessionShow:
+      properties:
+        starttime:
+          type: string
+          format: date-time
+          title: Starttime
+        endtime:
+          type: string
+          format: date-time
+          title: Endtime
+        startsoc:
+          type: integer
+          title: Startsoc
+        endsoc:
+          type: integer
+          title: Endsoc
+        totalkwh:
+          type: number
+          title: Totalkwh
+        kwhprice:
+          type: number
+          title: Kwhprice
+        amount:
+          type: number
+          title: Amount
+      type: object
+      required:
+      - starttime
+      - endtime
+      - startsoc
+      - endsoc
+      - totalkwh
+      - kwhprice
+      - amount
+      title: SessionShow
+    UserLogin:
+      properties:
+        username:
+          type: string
+          title: Username
+        password:
+          type: string
+          title: Password
+      type: object
+      required:
+      - username
+      - password
+      title: UserLogin
+    UserShow:
+      properties:
+        username:
+          type: string
+          title: Username
+        role:
+          type: string
+          title: Role
+      type: object
+      required:
+      - username
+      - role
+      title: UserShow
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
